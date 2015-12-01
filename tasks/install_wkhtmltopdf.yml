@@ -1,0 +1,22 @@
+---
+- name: Check if wkhtmltopdf package is installed
+  command: dpkg-query -W wkhtmltopdf
+  register: wkhtmltopdf_check_deb
+  failed_when: wkhtmltopdf_check_deb.rc > 1
+  changed_when: wkhtmltopdf_check_deb.rc == 1
+
+- name: Download wkhtmltopdf package from specific url
+  get_url:
+    url: '{{ item }}'
+    dest: "/tmp/wkhtmltopdf.deb"
+  when: wkhtmltopdf_check_deb.rc == 1
+  with_items:
+    - '{{ wkhtmltopdf_download_url }}'
+
+- name: Install wkhtmltopdf package
+  apt: deb="/tmp/wkhtmltopdf.deb"
+  when: wkhtmltopdf_check_deb.rc == 1
+
+- name: remove wkhtmltopdf debian package
+  command: rm /tmp/wkhtmltopdf.deb
+  when: wkhtmltopdf_check_deb.rc == 1

@@ -1,0 +1,29 @@
+---
+driver:
+    name: docker
+    use_sudo: false
+    require_chef_omnibus: false
+
+provisioner:
+  name: ansible_playbook
+  hosts: test-kitchen
+  require_chef_for_busser: false
+  require_ruby_for_busser: true
+  require_ansible_repo: true
+  ansible_verbose: true
+  ansible_verbosity: 1
+  sudo: true
+  # extra_vars:
+  #   rbenv:
+  #     env: system
+  #     version: v0.4.0
+  #     ruby_version: 2.1.2
+
+platforms:
+  - name: ubuntu-14.04 # trusty
+
+suites:
+ - name: default
+
+busser:
+  ruby_bindir: '/usr/bin'
