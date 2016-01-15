@@ -1,6 +1,0 @@
----
-- hosts: test-kitchen
-  user: root
-
-  roles:
-    - wkhtmltopdf

@@ -1,6 +1,8 @@
 wkhtmltopdf
 =========
-Эта роль устанавливает wkhtmltopdf.
+[![Build Status](https://travis-ci.org/vterdunov/ansible-wkhtmltopdf.svg?branch=master)](https://travis-ci.org/vterdunov/ansible-wkhtmltopdf)
+
+Эта роль устанавливает [Wkhtmltopdf](http://wkhtmltopdf.org/)
 
 Requirements
 ------------
@@ -20,7 +22,7 @@ None
 Example Playbook
 ----------------
 ```
-- hosts: servers
+- hosts: all
   roles:
      - role: wkhtmltopdf
 ```
